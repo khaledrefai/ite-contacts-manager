@@ -20,7 +20,7 @@ public class Department implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "branch_id")
+    @Column(name = "branch_id" , insertable = false , updatable = false)
     private Integer branchId;
 
     @Column(name = "department_id")

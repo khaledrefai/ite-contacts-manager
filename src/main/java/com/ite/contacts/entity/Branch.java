@@ -20,7 +20,7 @@ public class Branch implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "company_id")
+    @Column(name = "company_id", insertable = false, updatable = false)
     private Integer companyId;
 
     @Column(name = "branch_id")
@@ -124,7 +124,6 @@ public class Branch implements Serializable {
     public void setCompany(Company company) {
         this.company = company;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
