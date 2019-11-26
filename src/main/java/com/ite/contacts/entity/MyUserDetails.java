@@ -17,22 +17,38 @@ public class MyUserDetails implements UserDetails {
 
     private String userName;
     private String password;
-    private boolean active;
-    private List<GrantedAuthority> authorities;
-
+    private String  role;
+    private Integer  departmentId;
+    
     public MyUserDetails(User user) {
         this.userName = user.getUsername();
         this.password = user.getPassword();
-        this.active = user.isActive();
-        this.authorities = new ArrayList();
-        this.authorities.add( new SimpleGrantedAuthority(user.getRolename()));
-     
+        this.role = user.getRole();
+        this.departmentId = user.getDepartmentId();
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
+    public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	
+
+	public Integer getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 
     @Override
     public String getPassword() {
@@ -59,8 +75,17 @@ public class MyUserDetails implements UserDetails {
         return true;
     }
 
-    @Override
-    public boolean isEnabled() {
-        return active;
-    }
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+  
 }

@@ -1,4 +1,4 @@
-package com.ite.contact.service;
+package com.ite.contacts.service;
 
 import java.util.Optional;
 
