@@ -15,19 +15,40 @@ import java.util.ArrayList;
 
 public class MyUserDetails implements UserDetails {
 
-    private String userName;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String userName;
     private String password;
     private String  role;
     private Integer  departmentId;
+    private boolean active;
+    private List<GrantedAuthority> authorities;
     
     public MyUserDetails(User user) {
         this.userName = user.getUsername();
         this.password = user.getPassword();
-        this.role = user.getRole();
+        this.setRole(user.getRole());
         this.departmentId = user.getDepartmentId();
+        this.active = user.isActive();
+        GrantedAuthority ga = new SimpleGrantedAuthority("ROLE_" + user.getRole());
+        this.authorities = new ArrayList();
+        this.authorities.add(ga);
     }
 
-    public String getUserName() {
+    
+    public boolean isActive() {
+		return active;
+	}
+
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+
+	public String getUserName() {
 		return userName;
 	}
 
@@ -78,13 +99,26 @@ public class MyUserDetails implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.authorities;
 	}
 
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return this.active;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
+	public void setAuthorities(List<GrantedAuthority> authorities) {
+		this.authorities = authorities;
 	}
 
   
