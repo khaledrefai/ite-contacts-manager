@@ -20,8 +20,7 @@ public class Contact implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "department_id" ,insertable = false , updatable = false)
-    private Integer departmentId;
+    
 
     @NotBlank(message = "first Name is mandatory")
     @Column(name = "first_name")
@@ -35,13 +34,11 @@ public class Contact implements Serializable {
     @Column(name = "email")
     private String email;
    
-    
+    @NotBlank(message = "phone number is mandatory")
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "add_by")
-    private Integer addBy;
-
+   
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties("contacts")
     private Department department;
@@ -54,18 +51,7 @@ public class Contact implements Serializable {
         this.id = id;
     }
 
-    public Integer getDepartmentId() {
-        return departmentId;
-    }
 
-    public Contact departmentId(Integer departmentId) {
-        this.departmentId = departmentId;
-        return this;
-    }
-
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -119,18 +105,7 @@ public class Contact implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getAddBy() {
-        return addBy;
-    }
 
-    public Contact addBy(Integer addBy) {
-        this.addBy = addBy;
-        return this;
-    }
-
-    public void setAddBy(Integer addBy) {
-        this.addBy = addBy;
-    }
 
     public Department getDepartment() {
         return department;
@@ -165,12 +140,11 @@ public class Contact implements Serializable {
     public String toString() {
         return "Contact{" +
             "id=" + getId() +
-            ", departmentId=" + getDepartmentId() +
             ", firstName='" + getFirstName() + "'" +
             ", lastName='" + getLastName() + "'" +
             ", email='" + getEmail() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
-            ", addBy=" + getAddBy() +
+           
             "}";
     }
 }
