@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,8 +34,6 @@ public class LoginController {
 	private MyUserDetailsService userDetailsService;
 	
 	   private static final String jwtTokenCookieName = "JWT-TOKEN";
-	    private static final String signingKey = "signingKey";
-	    private static final Map<String, String> credentials = new HashMap<>();
 
 	  
 
@@ -58,9 +57,9 @@ public class LoginController {
 
 			final String jwt = jwtTokenUtil.generateToken(userDetails);
 			
-	        CookieUtil.create(httpServletResponse, jwtTokenCookieName, jwt, false, 30, "localhost");
+	        CookieUtil.create(httpServletResponse, jwtTokenCookieName, jwt, false, -1, "localhost");
 
-	        return "home" ; //redirect:home
+	        return "redirect:contacts" ; //redirect:home
 	    }
 	    
 	    @RequestMapping("/logout")
@@ -70,5 +69,22 @@ public class LoginController {
 	        return "redirect:/";
 	    }
 	    
+	    @GetMapping("/home")
+	    public String home() {
+	        return "/home";
+	    }
+
+	    @GetMapping("/about")
+	    public String about() {
+	        return "/about";
+	    }
+	    @GetMapping("/403")
+	    public String error403() {
+	        return "/error/403";
+	    }
+	    @GetMapping("/login")
+	    public String login() {
+	        return "/login";
+	    }
 	    
 }

@@ -22,7 +22,6 @@ public class MyUserDetails implements UserDetails {
 	private String userName;
     private String password;
     private String  role;
-    private Integer  departmentId;
     private boolean active;
     private List<GrantedAuthority> authorities;
     
@@ -30,7 +29,6 @@ public class MyUserDetails implements UserDetails {
         this.userName = user.getUsername();
         this.password = user.getPassword();
         this.setRole(user.getRole());
-        this.departmentId = user.getDepartmentId();
         this.active = user.isActive();
         GrantedAuthority ga = new SimpleGrantedAuthority("ROLE_" + user.getRole());
         this.authorities = new ArrayList();
@@ -58,14 +56,7 @@ public class MyUserDetails implements UserDetails {
 
 	
 
-	public Integer getDepartmentId() {
-		return departmentId;
-	}
-
-	public void setDepartmentId(Integer departmentId) {
-		this.departmentId = departmentId;
-	}
-
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
