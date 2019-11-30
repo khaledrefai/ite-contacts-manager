@@ -15,6 +15,7 @@ import com.ite.contacts.service.MyUserDetailsService;
 import com.ite.contacts.util.CookieUtil;
 import com.ite.contacts.util.JwtUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,9 +58,17 @@ public class LoginController {
 
 			final String jwt = jwtTokenUtil.generateToken(userDetails);
 			
-	        CookieUtil.create(httpServletResponse, jwtTokenCookieName, jwt, false, -1, "localhost");
+	        CookieUtil.create(httpServletResponse, jwtTokenCookieName, jwt, false, 30, "localhost");
 
 	        return "home" ; //redirect:home
 	    }
+	    
+	    @RequestMapping("/logout")
+	    public String logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+	    	
+	        CookieUtil.clear(httpServletResponse, jwtTokenCookieName);
+	        return "redirect:/";
+	    }
+	    
 	    
 }

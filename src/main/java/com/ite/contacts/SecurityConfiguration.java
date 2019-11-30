@@ -49,7 +49,13 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.formLogin().loginPage("/login")
-		.and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+		.and().exceptionHandling().accessDeniedHandler(accessDeniedHandler).and().logout(logout ->
+ 				logout.deleteCookies("remove")
+ 					.invalidateHttpSession(false)
+ 					.logoutUrl("/logout")
+);
+		httpSecurity.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMIN")
+		.antMatchers("/user/**").hasAnyRole("USER","ADMIN");
 		httpSecurity.csrf().disable()
 				.authorizeRequests().antMatchers("/authenticate").permitAll()
 				.and().

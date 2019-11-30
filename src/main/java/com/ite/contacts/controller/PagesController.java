@@ -34,13 +34,11 @@ public class PagesController {
 	
 	   
 	@GetMapping("/user")
-	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public String user() {
        return  "/user";
     }
 
     @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
     public String admin() {
     	  return "/admin";
     }
