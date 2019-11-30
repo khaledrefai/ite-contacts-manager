@@ -62,11 +62,11 @@ public class LoginController {
 	        return "redirect:contacts" ; //redirect:home
 	    }
 	    
-	    @RequestMapping("/logout")
+	    @RequestMapping("/signout")
 	    public String logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
 	    	
 	        CookieUtil.clear(httpServletResponse, jwtTokenCookieName);
-	        return "redirect:/";
+	        return "redirect:/home";
 	    }
 	    
 	    @GetMapping("/home")

@@ -48,8 +48,13 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
+		httpSecurity.authorizeRequests().antMatchers("/users").hasAnyRole("USER","ADMIN");
+		httpSecurity.authorizeRequests().antMatchers("/contacts").hasAnyRole("USER","ADMIN");
+
 		httpSecurity.formLogin().loginPage("/login");
+		
 		httpSecurity.authorizeRequests().antMatchers("/contacts/**").hasAnyRole("USER","ADMIN");
+		
 		httpSecurity.csrf().disable()
 				.authorizeRequests().antMatchers("/authenticate").permitAll()
 				.and().
