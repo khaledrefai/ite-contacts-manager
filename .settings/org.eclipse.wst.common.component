@@ -4,6 +4,9 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources/templates/fragments"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources/templates/error"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources/static"/>
         <property name="context-root" value="contacts"/>
         <property name="java-output-path" value="/ite-contacts-manager/target/classes"/>
     </wb-module>

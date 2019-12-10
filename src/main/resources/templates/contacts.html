@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h3>contacts page </h1>
+
+        <h2 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h2>
+      
+      
+      
+      <div th:switch="${contacts}">
+    <h2 th:case="null">No contacts yet!</h2>
+        <div th:case="*">
+            <h2>Users</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>first Name</th>
+                         <th>first Name</th>
+                        <th>Email</th>
+                         <th>phone number</th>
+                          <th>department </th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="contact : ${contacts}">
+                    <td th:text="${contact.firstName}"></td>
+                    <td th:text="${contact.lastName}"></td>
+                    <td th:text="${contact.email}"></td>
+                    <td th:text="${contact.phoneNumber}"></td>
+                      <td th:text="${contact.department.departmentName}"></td>
+                    <td><a th:href="@{/edit/{id}(id=${contact.id})}">Edit</a></td>
+                    <td><a th:href="@{/delete/{id}(id=${contact.id})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
+    <p><a href="/newcontact">Add a new contact</a></p>
+</div>
+
+
+
+    </div>
+
+</div>
+<!-- /.container -->
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

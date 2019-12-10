@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h3>add contact  page </h3>
+
+        <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h3>
+        
+<form action="#" th:action="@{/addcontact}" th:object="${contact}" method="post">
+
+    <label for="firstName">first Name</label>
+    <input type="text" th:field="*{firstName}" id="firstName" placeholder="first Name">
+    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+    
+    <label for="lastName">last Name</label>
+    <input type="text" th:field="*{lastName}" id="lastName" placeholder="last Name">
+    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+    
+    
+    <label for="email">Email</label>
+    <input type="text" th:field="*{email}" id="email" placeholder="Email">
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    
+    
+     <label for="phoneNumber">phone Number</label>
+    <input type="text" th:field="*{phoneNumber}" id="phoneNumber" placeholder="phone Number">
+    <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+    
+    
+    
+    
+    <input type="submit" value="Add Contact">   
+</form>
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ite application development </title>
+<meta charset="utf-8"/>
+    <div th:replace="fragments/header :: header-css"/>
+    
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>مشروع التطبيقات الشبكية</h1>
+        <h2> <a th:href="@{/contacts}">  ادارة جهات الاتصال  </a></h2>
+        <h2> <a th:href="@{/about}"> عن المشروع</a></h2>
+    </div>
+
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

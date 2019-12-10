@@ -1,5 +1,6 @@
 package com.ite.contacts.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -25,12 +26,14 @@ public class User  {
     private String username;
 
     @NotEmpty
+    @JsonIgnore
     private String password;
 
     private String role ;
+ 
+    private boolean active;
 
-    @Column(name = "department_id" ,insertable = false , updatable = false)
-    private Integer departmentId;
+
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties("users")
@@ -39,7 +42,15 @@ public class User  {
     
    
 
-    public String getUsername() {
+    public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getUsername() {
 		return username;
 	}
 
@@ -63,13 +74,6 @@ public class User  {
 		this.role = role;
 	}
 
-	public Integer getDepartmentId() {
-		return departmentId;
-	}
-
-	public void setDepartmentId(Integer departmentId) {
-		this.departmentId = departmentId;
-	}
 
 	public Department getDepartment() {
 		return department;

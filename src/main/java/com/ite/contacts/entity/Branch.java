@@ -16,13 +16,12 @@ public class Branch implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+ 
+    
+  
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "company_id", insertable = false, updatable = false)
-    private Integer companyId;
-
     @Column(name = "branch_id")
     private Integer branchId;
 
@@ -39,27 +38,9 @@ public class Branch implements Serializable {
     @JsonIgnoreProperties("branches")
     private Company company;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Integer getCompanyId() {
-        return companyId;
-    }
-
-    public Branch companyId(Integer companyId) {
-        this.companyId = companyId;
-        return this;
-    }
-
-    public void setCompanyId(Integer companyId) {
-        this.companyId = companyId;
-    }
+ 
 
     public Integer getBranchId() {
         return branchId;
@@ -125,29 +106,5 @@ public class Branch implements Serializable {
         this.company = company;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Branch)) {
-            return false;
-        }
-        return id != null && id.equals(((Branch) o).id);
-    }
 
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "Branch{" +
-            "id=" + getId() +
-            ", companyId=" + getCompanyId() +
-            ", branchId=" + getBranchId() +
-            ", branchName='" + getBranchName() + "'" +
-            "}";
-    }
 }
