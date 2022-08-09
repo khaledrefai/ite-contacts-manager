@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @Service
 public class JwtUtil {
 
-    private String SECRET_KEY = "#neveen@Ite2019";
+    private String SECRET_KEY = "#khaled@Ite2019";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
